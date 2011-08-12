@@ -6,16 +6,11 @@ class Ant < Formula
   md5 'afb0c7950a663f94e65da9f3be676d8f'
 
   def install
-    rm Dir['bin/*.{bat,cmd,dll,exe}']
-    libexec.install Dir['*']
-
-    bin.mkpath
-    Dir["#{libexec}/bin/*"].each do |f|
-      ln_s f, bin+File.basename(f)
-    end
+    prefix.install Dir['*']
   end
 
   def test
     system "ant -version"
   end
 end
+
